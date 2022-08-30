@@ -1,0 +1,120 @@
+:root {
+    --main-color: #F44336;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family : Arial, Helvetica, sans-serif;
+}
+
+.game {
+    background-color: #eee;
+    min-height: 100vh;
+}
+
+.title {
+    background-color: var(--main-color);
+    color: white;
+    font-weight: bold;
+    font-size:30px;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.head-text {
+    background-color: white;
+    padding: 15px;
+    margin: 15px 0;
+    text-align: center;
+}
+
+.head-text span {
+    color: var(--main-color);
+    font-weight: bold;
+}
+
+.head-text span::after {
+    content: " ]";
+}
+
+.head-text span::before {
+    content: "[ ";
+}
+
+.start-playing {
+    text-align: center;
+    background-color: #FF9800;
+    padding: 15px;
+    font-weight: bold;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.start-playing:hover {
+    background-color: #e0921c;
+    transition: .3s;
+}
+
+.up-coming-word {
+    font-weight: bold;
+    font-size: 40px;
+    text-align: center;
+    color: var(--main-color);
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    caret-color: var(--main-color);
+    border: 2px solid var(--main-color);
+    border-radius: 6px;
+    margin: 10px 0;
+}
+
+input:focus {
+    outline: none;
+}
+
+.rest-words {
+    background-color: white;
+    padding: 15px;
+    margin: 15px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.rest-words span {
+    background-color: var(--main-color);
+    color: white;
+    font-weight: bold;
+    padding: 7px;
+    margin: 3px;
+    border-radius: 4px;
+}
+
+.foot-text {
+    background-color: white;
+    padding: 15px;
+    margin: 15px 0;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.foot-text span {
+    color: var(--main-color);
+    font-weight: bold;
+}
