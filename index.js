@@ -26,13 +26,13 @@ const words = [
 // Levels
 
 let levels = {
-  Easy: 10,
-  Normal: 3,
-  Hard: 2,
+  easy: 5,
+  normal: 3,
+  hard: 2,
 };
 
 // Getting the Elements
-
+let game = document.querySelector(".game");
 let container = document.querySelector(".container");
 let level = document.querySelector(".head-text .level");
 let seconds = document.querySelector(".head-text .seconds");
@@ -42,21 +42,28 @@ let upComingWord = document.querySelector(".up-coming-word");
 let theWord = document.querySelector(".the-word");
 let timeLeft = document.querySelector(".foot-text .time-left");
 let wordsNumber = document.querySelector(".foot-text .words-number");
+let score = document.querySelector(".foot-text .score");
 
 // level
 
-level.innerHTML = "Easy";
-seconds.innerHTML = levels.Easy;
+level.innerHTML = "easy";
+seconds.innerHTML = levels.easy;
 wordsNumber.innerHTML = words.length;
 
 // Controle footer
-timeLeft.innerHTML = levels.Easy;
+timeLeft.innerHTML = levels.easy;
+
+// Input retunt false on paste
+input.onpaste = function () {
+  return false;
+};
 
 // Radomize Function
 
 startPlaying.onclick = function () {
   this.remove();
   input.focus();
+
   // Generate Word Function
   randomize();
 };
@@ -75,41 +82,53 @@ function randomize() {
 
   // Calling the randomize word
   theWord.innerHTML = randomizeWord;
-  // console
-  console.log(randomizeWord);
-  console.log(wordsIndex);
 
-  // Calling the Words from the Array
-  let restWords = document.querySelector(".rest-words");
-
+  // Create the Words from the Array
   for (let i = 0; i < words.length; i++) {
-    let wordSpan = document.createElement("span");
-    let wordText = document.createTextNode(words[i]);
-    wordSpan.appendChild(wordText);
-    restWords.appendChild(wordSpan);
+    let div = document.createElement("div");
+    let text = document.createTextNode(words[i]);
+    div.appendChild(text);
+    upComingWord.appendChild(div);
   }
 
+  // startPlay Function
+  startPlay();
+}
+
+function startPlay() {
+  timeLeft.innerHTML = levels.easy;
   // Count down timer
   let countDown = setInterval(() => {
     timeLeft.innerHTML--;
     if (timeLeft.innerHTML == "0") {
       clearInterval(countDown);
 
+      // Compare Words
       if (
         theWord.innerHTML.toLocaleLowerCase() ===
         input.value.toLocaleLowerCase()
       ) {
-        randomize();
         input.value = "";
-        timeLeft.innerHTML = levels.Easy;
+        score.innerHTML++;
+        console.log(words.length);
+        if (words.length > 0) {
+          randomize();
+        } else {
+          // Congratulations
+          let span = document.createElement("span");
+          let text = document.createTextNode("Congratulations");
+          span.className = "congratulations";
+          span.appendChild(text);
+          document.body.appendChild(span);
+        }
+      } else {
+        // Game over
+        let gameOver = document.createElement("div");
+        let gameOverText = document.createTextNode("Game Over");
+        gameOver.className = "game-over";
+        gameOver.appendChild(gameOverText);
+        game.appendChild(gameOver);
       }
-
-      // Game over
-      // let gameOver = document.createElement("div");
-      // let gameOverText = document.createTextNode("Game Over");
-      // gameOver.classList.add("game-over");
-      // gameOver.appendChild(gameOverText);
-      // document.body.appendChild(gameOver);
     }
   }, 1000);
 }
