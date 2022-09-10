@@ -3,7 +3,7 @@
 const words = [
   "Work",
   "Hi",
-  "Programmig",
+  "Programming",
   "Example",
   "Job",
   "Film",
@@ -23,47 +23,81 @@ const words = [
   "JavaScript",
 ];
 
-// Levels
-
-let levels = {
-  easy: 5,
-  normal: 3,
-  hard: 2,
-};
-
 // Getting the Elements
+
 let game = document.querySelector(".game");
-let container = document.querySelector(".container");
+let selectLevel = document.querySelector(".select-level");
+let easyBtn = document.querySelector(".options .easy");
+let normalBtn = document.querySelector(".options .normal");
+let hardBtn = document.querySelector(".options .hard");
+let headText = document.querySelector(".head-text");
 let level = document.querySelector(".head-text .level");
 let seconds = document.querySelector(".head-text .seconds");
 let startPlaying = document.querySelector(".start-playing");
+let theWord = document.querySelector(".the-word");
 let input = document.querySelector(".input");
 let upComingWord = document.querySelector(".up-coming-word");
-let theWord = document.querySelector(".the-word");
+let footText = document.querySelector(".foot-text");
 let timeLeft = document.querySelector(".foot-text .time-left");
-let wordsNumber = document.querySelector(".foot-text .words-number");
 let score = document.querySelector(".foot-text .score");
+let wordsNumber = document.querySelector(".foot-text .words-number");
 
-// level
+// Levels
 
-level.innerHTML = "easy";
-seconds.innerHTML = levels.easy;
+let levels = {
+  easy: 7,
+  normal: 5,
+  hard: 3,
+};
+
+// levels & Controle footer
+
 wordsNumber.innerHTML = words.length;
 
-// Controle footer
-timeLeft.innerHTML = levels.easy;
+// Options
+// Easy option
+easyBtn.onclick = function () {
+  headText.style.display = "block";
+  level.innerHTML = this.innerHTML;
+  seconds.innerHTML = levels.easy;
+  timeLeft.innerHTML = levels.easy;
+};
 
+// Normal option
+normalBtn.onclick = function () {
+  headText.style.display = "block";
+  level.innerHTML = this.innerHTML;
+  seconds.innerHTML = levels.normal;
+  timeLeft.innerHTML = levels.normal;
+};
+// hard option
+hardBtn.onclick = function () {
+  headText.style.display = "block";
+  level.innerHTML = this.innerHTML;
+  seconds.innerHTML = levels.hard;
+  timeLeft.innerHTML = levels.hard;
+};
 // Input retunt false on paste
+
 input.onpaste = function () {
   return false;
 };
+
+// Block the button before Selecting the level
+
+if ((headText.style.display = "none")) {
+  console.log("good");
+}
 
 // Radomize Function
 
 startPlaying.onclick = function () {
   this.remove();
+  selectLevel.remove();
+  upComingWord.style.display = "flex";
+  input.style.display = "flex";
+  footText.style.display = "flex";
   input.focus();
-
   // Generate Word Function
   randomize();
 };
@@ -96,7 +130,7 @@ function randomize() {
 }
 
 function startPlay() {
-  timeLeft.innerHTML = levels.easy;
+  timeLeft.innerHTML = seconds.innerHTML;
   // Count down timer
   let countDown = setInterval(() => {
     timeLeft.innerHTML--;
@@ -110,7 +144,6 @@ function startPlay() {
       ) {
         input.value = "";
         score.innerHTML++;
-        console.log(words.length);
         if (words.length > 0) {
           randomize();
         } else {

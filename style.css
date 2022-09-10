@@ -33,11 +33,51 @@ body {
     position: relative;
 }
 
+.select-level {
+    padding-top: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.select-level .options {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.options div {
+    padding: 5px 20px;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+}
+.options .easy {
+    background-color: green;
+}
+.options .normal {
+    background-color: brown;
+}
+.options .hard {
+    background-color: red;
+}
+.options .easy:hover {
+    background-color: rgb(21, 85, 21);
+}
+.options .normal:hover {
+    background-color: rgb(113, 46, 46);
+}
+.options .hard:hover {
+    background-color: rgb(211, 21, 21);
+}
+
 .head-text {
     background-color: white;
     padding: 15px;
     margin: 15px 0;
     text-align: center;
+    display: none;
 }
 
 .head-text span {
@@ -56,6 +96,7 @@ body {
 .start-playing {
     text-align: center;
     background-color: #FF9800;
+    margin-top: 20px;
     padding: 15px;
     font-weight: bold;
     color: white;
@@ -85,6 +126,7 @@ body {
     border: 2px solid var(--main-color);
     border-radius: 6px;
     margin: 10px 0;
+    display: none;
 }
 
 input:focus {
@@ -97,6 +139,7 @@ input:focus {
     margin: 15px 0;
     display: flex;
     flex-wrap: wrap;
+    display: none;
     justify-content: center;
 }
 
@@ -114,7 +157,7 @@ input:focus {
     background-color: white;
     padding: 15px;
     margin: 15px 0;
-    display: flex;
+    display: none;
     justify-content: space-between;
 
 }
