@@ -211,6 +211,7 @@ input:focus {
     font-size: 23px;
     transition: .3s;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .game-over .restart:hover {

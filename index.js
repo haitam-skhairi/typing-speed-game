@@ -173,6 +173,8 @@ function startPlay() {
           document.body.appendChild(span);
         }
       } else {
+        // block input
+        input.blur();
         // Game over
         let gameOver = document.createElement("div");
         gameOver.className = "game-over";
@@ -198,3 +200,5 @@ function startPlay() {
     }
   }, 1000);
 }
+
+console.log(location);
