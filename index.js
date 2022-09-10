@@ -27,6 +27,7 @@ const words = [
 
 let game = document.querySelector(".game");
 let selectLevel = document.querySelector(".select-level");
+let options = document.querySelectorAll(".options div");
 let easyBtn = document.querySelector(".options .easy");
 let normalBtn = document.querySelector(".options .normal");
 let hardBtn = document.querySelector(".options .hard");
@@ -55,9 +56,23 @@ let levels = {
 wordsNumber.innerHTML = words.length;
 
 // Options
+
+console.log(options);
+
+options.forEach((el) => {
+  el.addEventListener("click", () => {
+    options.forEach((el) => {
+      el.classList.add("active");
+    });
+    el.classList.remove("active");
+  });
+  // console.log(el);
+});
+
 // Easy option
 easyBtn.onclick = function () {
   headText.style.display = "block";
+  startPlaying.style.display = "block";
   level.innerHTML = this.innerHTML;
   seconds.innerHTML = levels.easy;
   timeLeft.innerHTML = levels.easy;
@@ -66,6 +81,7 @@ easyBtn.onclick = function () {
 // Normal option
 normalBtn.onclick = function () {
   headText.style.display = "block";
+  startPlaying.style.display = "block";
   level.innerHTML = this.innerHTML;
   seconds.innerHTML = levels.normal;
   timeLeft.innerHTML = levels.normal;
@@ -73,6 +89,7 @@ normalBtn.onclick = function () {
 // hard option
 hardBtn.onclick = function () {
   headText.style.display = "block";
+  startPlaying.style.display = "block";
   level.innerHTML = this.innerHTML;
   seconds.innerHTML = levels.hard;
   timeLeft.innerHTML = levels.hard;
