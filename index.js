@@ -42,6 +42,7 @@ let footText = document.querySelector(".foot-text");
 let timeLeft = document.querySelector(".foot-text .time-left");
 let score = document.querySelector(".foot-text .score");
 let wordsNumber = document.querySelector(".foot-text .words-number");
+let restart = document.querySelector(".game-over .restart");
 
 // Levels
 
@@ -174,10 +175,25 @@ function startPlay() {
       } else {
         // Game over
         let gameOver = document.createElement("div");
-        let gameOverText = document.createTextNode("Game Over");
         gameOver.className = "game-over";
-        gameOver.appendChild(gameOverText);
+        // h1
+        let gameOverH1 = document.createElement("h1");
+        let gameOverH1Text = document.createTextNode("Game Over");
+        gameOver.appendChild(gameOverH1);
+        gameOverH1.appendChild(gameOverH1Text);
+        // restart
+        let restart = document.createElement("div");
+        let restartText = document.createTextNode("Restart");
+        restart.className = "restart";
+        restart.appendChild(restartText);
+        gameOver.appendChild(restart);
+        // total
         game.appendChild(gameOver);
+
+        // restart
+        restart.addEventListener("click", () => {
+          location.reload();
+        });
       }
     }
   }, 1000);
